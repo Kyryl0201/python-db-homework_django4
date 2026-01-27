@@ -1,20 +1,33 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+from common.tools import group_required
 
-# Create your views here.
+
+@group_required("Teacher")
 def teacher_page(request):
-    return "ok"
+    return HttpResponse("ok")
 
+
+@group_required("Teacher")
 def teacher_lessons(request):
-    return "ok"
+    return HttpResponse("ok")
 
-def specific_lesson(request, lesson_id):
-    return f"ok {lesson_id}"
 
+@group_required("Teacher")
+def teacher_specific_lesson(request, lesson_id):
+    return HttpResponse(f"ok {lesson_id}")
+
+
+@group_required("Teacher")
 def absence(request, lesson_id):
-    return f"ok {lesson_id}"
+    return HttpResponse(f"ok {lesson_id}")
 
+
+@group_required("Teacher")
 def grade(request, lesson_id):
-    return f"ok {lesson_id}"
+    return HttpResponse(f"ok {lesson_id}")
 
+
+@group_required("Teacher")
 def check_student_homework(request, lesson_id, homework_id):
-    return f"ok {lesson_id} here is {homework_id}"
+    return HttpResponse(f"ok {lesson_id} here is {homework_id}")

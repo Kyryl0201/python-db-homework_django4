@@ -1,0 +1,25 @@
+<html>
+<form action="/register/" method="post">
+    {% csrf_token %}
+    <label for="first_name">First Name</label>
+    <input type="text" name="first_name"><br>
+    <label for="last_name">Last Name</label>
+    <input type="text" name="last_name"><br>
+    <label>Login</label>
+    <input type="text" name="login"><br>
+    <label>Email</label>
+    <input type="email" name="email"><br>
+    <label>Password</label>
+    <input type="password" name="password">
+    <br>
+    <label>Role</label>
+    <select name="role" required>
+        <option value="">-- Choose role --</option>
+        <option value="Student">Student</option>
+        <option value="Teacher">Teacher</option>
+        <option value="Parents">Parents</option>
+    </select>
+    <br><br>
+    <input type="submit">
+</form>
+</html>

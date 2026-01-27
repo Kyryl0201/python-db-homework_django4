@@ -5,6 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-
+{% if error %}
+<H1>{{ error }}</H1>
+{% endif %}
+<form action="/login/" method="post">
+{% csrf_token %}
+    <label>Login</label>
+    <input type="text" name="login"><br>
+    <label>Password</label>
+    <input type="password" name="password">
+    <br>
+    <input type="submit">
+</form>
 </body>
 </html>
