@@ -1,0 +1,10 @@
+<html>
+<form action="/teacher/lessons" method="post">
+{% csrf_token %}
+{{ form }}
+<input type="submit" value="Create lesson">
+</form>
+{% for one_lesson in teacher_lessons %}
+{{ one_lesson }}
+{% endfor %}
+</html>

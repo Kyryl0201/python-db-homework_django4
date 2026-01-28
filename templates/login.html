@@ -10,12 +10,8 @@
 {% endif %}
 <form action="/login/" method="post">
 {% csrf_token %}
-    <label>Login</label>
-    <input type="text" name="login"><br>
-    <label>Password</label>
-    <input type="password" name="password">
-    <br>
-    <input type="submit">
+    {{ form }}
+    <input type="submit" value="Login">
 </form>
 </body>
 </html>
