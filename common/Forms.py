@@ -11,7 +11,7 @@ class RegisterForm(UserCreationForm):
         fields = ['username', 'first_name', 'last_name', 'email']
 
 class LoginForm(Form):
-    login = CharField(max_length=200)
+    username = CharField(max_length=200)
     password = CharField(max_length=200)
 
 class DateInput_custom(DateInput):

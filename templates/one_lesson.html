@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<form action="/teacher/lessons{{ lesson.id }}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Update">
+</form>
+<br>
+Absence:
+<form action="/teacher/lessons/{{ lesson.id }}/absence" method="post">
+    {% csrf_token %}
+    {% for one_student in class_students %}
+        <input type="checkbox" name="student-{{ one_student.id }}" id="student-{{ one_student.id }}" value="{{ one_student.id }}" {{ one_student.is_absent }}>
+        <label for="student-{{ one_student.id }}">{{ one_student.username }}</label><br>
+    {% endfor %}
+    <input type="submit" value="Add absence">
+</form>
+</body>
+</html>
