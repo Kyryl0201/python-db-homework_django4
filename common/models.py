@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 # Create your models here.
@@ -55,6 +57,8 @@ class Grades(models.Model):
     student = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='grades_as_student')
     lesson = models.ForeignKey('Lesson', on_delete=models.CASCADE)
     teacher = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='grades_as_teacher')
+    created_at = models.DateField(default=datetime.datetime.now)
+    grade = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.student} - {self.lesson} - {self.teacher}"
@@ -74,3 +78,9 @@ class LessonVisits(models.Model):
 
     def __str__(self):
         return f"{self.student} - {self.lesson}"
+
+class StudentStatistics(models.Model):
+    student = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    average = models.FloatField()
+    start_period = models.DateTimeField()
+    end_period = models.DateTimeField()

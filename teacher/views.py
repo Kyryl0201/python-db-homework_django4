@@ -15,7 +15,7 @@ def teacher_lessons(request):
     if request.method == "POST":
         form = LessonForm(request.POST)
 
-        if form.is_valid():  # ← ВАЖНО
+        if form.is_valid():
             Lesson.objects.create(
                 teacher=request.user,
                 **form.cleaned_data
@@ -57,12 +57,12 @@ def teacher_specific_lesson(request, lesson_id):
 def absence(request, lesson_id):
     lesson = Lesson.objects.get(id=lesson_id)
     if request.method == "POST":
-        LessonVisits.objects.filter(lesson=lesson).delete()
         for key, value in request.POST.items():
             if key.startswith("student"):
                 student = User.objects.get(id=int(value))
-                lesson_absence_student_form = LessonVisits.objects.create(student=student, lesson=lesson)
-                lesson_absence_student_form.save()
+                if not LessonVisits.objects.filter(student=student, lesson=lesson).exists():
+                    lesson_absence_student_form = LessonVisits.objects.create(student=student, lesson=lesson)
+                    lesson_absence_student_form.save()
 
     return redirect("teacher_specific_lesson", lesson_id=lesson_id)
 
